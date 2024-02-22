@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./src/**/*.{html,js}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        'weather-primary': '0068AA',
+        'weather-primary': '#0068AA',
         'weather-secondary': '#004E71'
       }
     },
