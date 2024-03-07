@@ -10,13 +10,12 @@ const route = useRoute()
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
-console.log(apiKey)
-
 const getWeatherData = async () => {
   try {
     const weatherData = await axios.get(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.long}&appid=${apiKey}&units=metric`
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.long}&exclude=minutely,daily&appid=${apiKey}&units=metric`
     )
+
     // cal current date & time
     const localOffset = new Date().getTimezoneOffset() * 60000
     const utc = weatherData.data.current.dt * 1000 + localOffset
@@ -26,6 +25,7 @@ const getWeatherData = async () => {
       const utc = hour.dt * 1000 + localOffset
       hour.currentTime = utc + 1000 * weatherData.data.timezone_offset
     })
+
     return weatherData.data
   } catch (e) {
     console.log(e)
