@@ -19,7 +19,6 @@ const getSearchResults = () => {
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQuery.value}.json?access_token=${mapboxApiKey}&types=place`
         )
 
-        console.log(result, 'hhh')
         mapboxSearchResult.value = result.data.features
       } catch (e) {
         searchError.value = true
@@ -31,6 +30,7 @@ const getSearchResults = () => {
 }
 
 const previewCity = (result) => {
+  console.log(result)
   const [city, state] = result.place_name.split(',')
 
   router.push({
