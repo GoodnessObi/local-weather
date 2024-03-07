@@ -115,7 +115,7 @@ const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 const getWeatherData = async () => {
   try {
     const weatherData = await axios.get(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.long}&exclude=minutely&appid=${apiKey}&units=metric`
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${route.query.lat}&lon=${route.query.lon}&exclude=minutely&appid=${apiKey}&units=metric`
     )
 
     // cal current date & time
