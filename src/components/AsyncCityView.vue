@@ -97,6 +97,7 @@
     <div
       class="flex items-center gap-2 py-12 text-white cursor-pointer duration-150 hover:text-red-500"
       @click="removeCity"
+      v-if="!route.query.preview"
     >
       <i class="fa-solid fa-trash"></i>
       <p>Remove City</p>
@@ -106,9 +107,10 @@
 
 <script setup>
 import axios from 'axios'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 
 const apiKey = import.meta.env.VITE_OPENWEATHER_API_KEY
 
@@ -136,6 +138,14 @@ const getWeatherData = async () => {
 
 const weatherData = await getWeatherData()
 
-console.log(weatherData, 'ress')
+const removeCity = () => {
+  const cities = JSON.parse(localStorage.getItem('savedCities'))
+  const updatedCities = cities.filter((city) => city.id !== route.query.id)
+
+  localStorage.setItem('savedCities', JSON.stringify(updatedCities))
+
+  router.push({
+    name: 'home'
+  })
+}
 </script>
-s
